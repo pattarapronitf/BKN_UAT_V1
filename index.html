@@ -201,6 +201,69 @@
             font-size: 48px;
             margin-bottom: 15px;
         }
+        .signature-options {
+            margin: 25px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+        .option-group h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .checkbox-container {
+            margin-bottom: 20px;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            user-select: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        .checkbox-input {
+            display: none;
+        }
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            margin-right: 12px;
+            margin-top: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .checkbox-input:checked + .checkbox-custom {
+            background: #667eea;
+            border-color: #667eea;
+        }
+        .checkbox-input:checked + .checkbox-custom::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .checkbox-text {
+            flex: 1;
+            line-height: 1.4;
+        }
+        .option-desc {
+            margin: 8px 0 0 32px;
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -279,7 +342,7 @@
                 <div class="highlight">
                     <strong>📝 ตามมาตรา 9, 26, 28</strong> ระบบจะแสดงฟิลด์ที่สามารถวางลายเซ็นได้ตามกฎหมาย
                 </div>
-               <div class="signature-types">
+                <div class="signature-types">
                     <div class="signature-type">
                         <div class="signature-icon">📋</div>
                         <h4>มาตรา 9</h4>
@@ -310,6 +373,33 @@
                         <div class="sub-step-number">3.2</div>
                         <div class="sub-step-title">ข้ามขั้นตอนนี้</div>
                         <div class="sub-step-desc">หากยังไม่มีลายเซ็น ผู้เซ็นจะสร้างใหม่ในขั้นตอนการลงนาม</div>
+                    </div>
+                    <div class="sub-step">
+                        <div class="sub-step-number">3.3</div>
+                        <div class="sub-step-title">กำหนดตัวเลือกการแสดงฟิลด์</div>
+                        <div class="sub-step-desc">เลือกตัวเลือกเพิ่มเติมสำหรับฟิลด์ลายเซ็น</div>
+                    </div>
+                </div>
+                
+                <div class="signature-options">
+                    <div class="option-group">
+                        <h4>⚙️ ตัวเลือกการแสดงฟิลด์ลายเซ็น</h4>
+                        <div class="checkbox-container">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-all-pages" class="checkbox-input">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">แสดงฟิลด์นี้ในทุกหน้า</span>
+                            </label>
+                            <p class="option-desc">เมื่อเลือกตัวเลือกนี้ ฟิลด์ลายเซ็นจะแสดงในทุกหน้าของเอกสาร (ใช้ลายเซ็นซ้ำ ๆ ทุกหน้า)</p>
+                        </div>
+                        <div class="checkbox-container">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="moveable-field" class="checkbox-input">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">สามารถเคลื่อนย้ายได้อิสระ</span>
+                            </label>
+                            <p class="option-desc">เมื่อเลือกตัวเลือกนี้ ผู้เซ็นสามารถลากและวางตำแหน่งฟิลด์ลายเซ็นได้อย่างอิสระในแต่ละหน้า</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -350,7 +440,7 @@
                         <div class="sub-step-desc">ผู้เซ็นจะต้อง:
                             <ul style="margin-top: 10px;">
                                 <li>วาดลายเซ็นใหม่ หรือ</li>
-                                <li>อัปโหลดรูปลายเซ็น ที่ User Profile</li>
+                                <li>อัปโหลดรูปลายเซ็น ที่ User File</li>
                             </ul>
                         </div>
                     </div>
@@ -362,6 +452,8 @@
                 <ul>
                     <li><strong>บันทึกลายเซ็นไว้ล่วงหน้า:</strong> ลายเซ็นที่บันทึกไว้จะทำให้การลงนามรวดเร็วขึ้น</li>
                     <li><strong>ตรวจสอบลำดับและบทบาท:</strong> ให้แน่ใจว่าลำดับการเซ็นและบทบาทถูกต้อง</li>
+                    <li><strong>ใช้ตัวเลือก "แสดงในทุกหน้า":</strong> เหมาะสำหรับเอกสารที่ต้องการลายเซ็นในทุกหน้า</li>
+                    <li><strong>ใช้ตัวเลือก "เคลื่อนย้ายได้อิสระ":</strong> เหมาะสำหรับเอกสารที่ต้องการความยืดหยุ่นในการจัดตำแหน่งลายเซ็น</li>
                 </ul>
             </div>
 
@@ -369,6 +461,7 @@
                 <strong>⚠️ ข้อควรระวัง:</strong>
                 <ul>
                     <li>หากไม่เลือกรูปแบบลายเซ็นไว้ ผู้เซ็นจะต้องใช้เวลาสร้างลายเซ็นใหม่</li>
+                    <li>ลายเซ็นที่วาดใหม่จะมีความแม่นยำขึ้นอยู่กับอุปกรณ์ที่ใช้</li>
                 </ul>
             </div>
         </div>
